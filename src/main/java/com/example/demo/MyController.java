@@ -15,6 +15,6 @@ public class MyController {
 //    private String myname;
     @GetMapping("/hello")
     public ResponseEntity<?> helloGet(){
-        return ResponseEntity.ok().body("Hello Devops nha! ");
+        return ResponseEntity.ok().body("Hello Devops nha!s ");
     }
 }
