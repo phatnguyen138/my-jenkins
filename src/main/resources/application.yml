@@ -5,5 +5,5 @@ spring:
   application:
     name: crm
 
-my_var:
-  var1: ${hello_name}
+#my_var:
+#  var1: ${hello_name}
