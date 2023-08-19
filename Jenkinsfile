@@ -20,6 +20,10 @@ pipeline {
                     sh 'docker push phatnguyen1812/my-first-repo'
                     sh 'echo "Push"'
                 }
+                catchError {
+                    // Handle the error here
+                    echo "An error occurred: ${it}"
+                }
             }
         }
     }
