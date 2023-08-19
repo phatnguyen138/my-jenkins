@@ -20,6 +20,9 @@ jobs:
       - name: Build with Maven
         run: ./mvnw install
 
+      - name: List file
+        run: ls
+
       - name: Upload target directory
         uses: actions/upload-artifact@v2
         with:
@@ -37,6 +40,9 @@ jobs:
         uses: actions/download-artifact@v2
         with:
           name: target-directory
+
+      - name: List file
+        run: ls
 
       - name: Build Docker image
         run: docker build --build-arg JAR_FILE=target/*.jar -t phatnguyen1812/my-first-repo --progress=plain .
