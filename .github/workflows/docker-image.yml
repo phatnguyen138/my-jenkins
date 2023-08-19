@@ -40,6 +40,7 @@ jobs:
         uses: actions/download-artifact@v2
         with:
           name: target-directory
+          path: target
 
       - name: List file
         run: ls
