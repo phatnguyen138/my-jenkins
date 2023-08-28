@@ -30,5 +30,15 @@ pipeline {
                 }
             }
         }
+        stage('Deploy') {
+            steps {
+                script {
+                    // SSH into the remote server and execute commands
+                    sshagent(['my-key']) {
+                        sh 'ssh -o StrictHostKeyChecking=no phat@phat "docker pull phatnguyen1812/my-first-repo && docker run --name my-app -d -p 8080:8080 phatnguyen1812/my-first-repo"'
+                    }
+                }
+            }
+        }
     }
 }
