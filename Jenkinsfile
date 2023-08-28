@@ -37,8 +37,8 @@ pipeline {
                     def remoteServerIp = '192.168.1.84'  // Replace with your VM's IP address
                     def remoteUsername = 'phat'
                     
-                    withCredentials([sshUserPrivateKey(credentialsId: 'my-key', keyFileVariable: 'MY_SSH_KEY')]) {
-                        sh 'ssh -i \$MY_SSH_KEY ${remoteUsername}@${remoteServerIp}'
+                    sshagent(credentials: ['my-key']) {
+                        sh "ssh -o StrictHostKeyChecking=no -i \$MY_SSH_KEY ${remoteUsername}@${remoteServerIp} 'echo \$JAVA_HOME'"
                     }
                 }
             }
