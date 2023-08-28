@@ -38,7 +38,7 @@ pipeline {
                     def remoteUsername = 'phat'
                     
                     sshagent(credentials: ['my-key']) {
-                        sh "ssh -o StrictHostKeyChecking=no -i \$MY_SSH_KEY ${remoteUsername}@${remoteServerIp} 'echo \$JAVA_HOME'"
+                        sh 'ssh ${remoteUsername}@${remoteServerIp} "echo \$JAVA_HOME"'
                     }
                 }
             }
