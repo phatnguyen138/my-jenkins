@@ -37,8 +37,8 @@ pipeline {
                     def remoteServerIp = '192.168.1.84'  // Replace with your VM's IP address
                     def remoteUsername = 'phat'
                     
-                    sshagent(credentials: ['my-key']) {
-                        sh 'ssh ubuntu@192.168.1.84 "docker pull phatnguyen1812/my-first-repo && docker run phatnguyen1812/my-first-repo"'
+                    sshagent(credentials: ['ssh-key']) {
+                        sh 'ssh phat@192.168.1.84 "docker pull phatnguyen1812/my-first-repo && docker run phatnguyen1812/my-first-repo"'
                     }
                 }
             }
