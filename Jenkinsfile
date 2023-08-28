@@ -10,6 +10,11 @@ pipeline {
                 sh 'ls'
             }
         }
+        stage('Test'){
+            steps{
+                sh 'java -version'
+            }
+        }
         // stage('Docker Build') {
         //     steps {
         //         sh 'ls'
