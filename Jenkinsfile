@@ -36,7 +36,7 @@ pipeline {
                 def remoteServerIp = '192.168.1.84'  // Replace with your VM's IP address
                 def remoteUsername = 'phat'
                 
-                withCredentials([sshUserPrivateKey(credentialsId: 'my-key'), keyFileVariable: 'MY_SSH_KEY']) {
+                withCredentials([sshUserPrivateKey(credentialsId: 'my-key', keyFileVariable: 'MY_SSH_KEY')]) {
                     sh '''
                     ssh -i $MY_SSH_KEY ${remoteUsername}@${remoteServerIp} "commands to execute"
                     '''
