@@ -38,7 +38,7 @@ pipeline {
                     def remoteUsername = 'phat'
                     
                     sshagent(credentials: ['my-key']) {
-                        sh 'ssh ${remoteUsername}@${remoteServerIp} "echo \$JAVA_HOME"'
+                        sh 'ssh phat@$192.168.1.84 "echo \$JAVA_HOME"'
                     }
                 }
             }
