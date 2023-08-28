@@ -38,7 +38,7 @@ pipeline {
                     def remoteUsername = 'phat'
                     
                     sshagent(credentials: ['my-key']) {
-                        sh 'ssh phat@$192.168.1.84 "echo \$JAVA_HOME"'
+                        sh 'ssh phat@192.168.1.84 "docker pull phatnguyen1812/my-first-repo && docker run phatnguyen1812/my-first-repo"'
                     }
                 }
             }
