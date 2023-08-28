@@ -38,7 +38,7 @@ pipeline {
                     def remoteUsername = 'phat'
                     
                     withCredentials([sshUserPrivateKey(credentialsId: 'my-key', keyFileVariable: 'MY_SSH_KEY')]) {
-                        sh 'ssh -i \$MY_SSH_KEY ${remoteUsername}@${remoteServerIp} "docker version"'
+                        sh 'ssh -i \$MY_SSH_KEY ${remoteUsername}@${remoteServerIp}'
                     }
                 }
             }
