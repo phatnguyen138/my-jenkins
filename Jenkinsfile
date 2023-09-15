@@ -11,9 +11,14 @@ pipeline {
                 sh 'ls'
             }
         }
-        stage('Test'){
+        stage('Code scanning with sonarqube'){
+            when {
+                branch 'dev'
+            }
             steps{
-                sh 'java -version'
+                withSonarQubeEnv("my-sonar"){
+                    sh 'mvn sonar:sonar'
+                }
             }
         }
         // stage('Docker Build') {
@@ -30,18 +35,18 @@ pipeline {
         //         }
         //     }
         // }
-        stage('Deploy') {
-            steps {
-                sh 'echo "Deploy!"'
-                script {
-                    def remoteServerIp = '192.168.1.84'  // Replace with your VM's IP address
-                    def remoteUsername = 'phat'
+        // stage('Deploy') {
+        //     steps {
+        //         sh 'echo "Deploy!"'
+        //         script {
+        //             def remoteServerIp = '192.168.1.84'  // Replace with your VM's IP address
+        //             def remoteUsername = 'phat'
                     
-                    sshagent(credentials: ['ssh-key']) {
-                        sh 'ssh phat@192.168.1.84 "docker pull phatnguyen1812/my-first-repo && docker run -d --rm -p 8081:8080 phatnguyen1812/my-first-repo"'
-                    }
-                }
-            }
-        }
+        //             sshagent(credentials: ['ssh-key']) {
+        //                 sh 'ssh phat@192.168.1.84 "docker pull phatnguyen1812/my-first-repo && docker run -d --rm -p 8081:8080 phatnguyen1812/my-first-repo"'
+        //             }
+        //         }
+        //     }
+        // }
     }
 }
