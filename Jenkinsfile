@@ -40,13 +40,17 @@ pipeline {
         }
         stage('Deploy into remote server') {
             steps {
-                sh 'echo "Deploy!"'
-                script {
-                    def remoteServerIp = '192.168.1.84'  // Replace with your VM's IP address
-                    def remoteUsername = 'phat'
-                    
-                    sshagent(credentials: ['ssh-key']) {
-                        sh 'ssh phat@192.168.1.84 "docker pull phatnguyen1812/my-first-repo && docker run -d --rm -p 8081:8080 phatnguyen1812/my-first-repo"'
+                stage('Deploy') {
+                    steps {
+                        sh 'echo "Deploy!"'
+                        script {
+                            def remoteServerIp = credentials('REMOTE_SERVER_IP')
+                            def remoteUsername = credentials('REMOTE_USERNAME')
+                            
+                            sshagent(credentials: ['ssh-key']) {
+                                sh 'ssh ${remoteUsername}@${remoteServerIp} "docker pull phatnguyen1812/my-first-repo && docker run -d --rm -p 8081:8080 phatnguyen1812/my-first-repo"'
+                            }
+                        }
                     }
                 }
             }
